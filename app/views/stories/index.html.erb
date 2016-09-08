@@ -1,6 +1,15 @@
 <h1>Stories</h1>
 <ul>
 <% @stories.each do |story| %>
-  <li><%= link_to story.name, story_path(story) %></li>
+  <li>
+    <%= link_to story.name, story_path(story) %>
+    <% if session[:current_user_id] == story.user.id %>
+    <%= link_to "Delete", story_path(story),
+                          :data => {:confirm => "Remove story?",
+                          :method => "delete"}%>
+    <% end %>
+  </li>
 <% end %>
 </ul>
+
+<%= link_to "Add New Story", new_story_path %>

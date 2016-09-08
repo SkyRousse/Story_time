@@ -8,6 +8,10 @@ class StoriesController < ApplicationController
     @story = Story.new
   end
 
+  def show
+    @story = Story.find(params[:id])
+  end
+
   def create
     @story = Story.new(story_params)
     user = User.find(session[:current_user_id])
@@ -19,8 +23,12 @@ class StoriesController < ApplicationController
     end
   end
 
+  def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
+    redirect_to root_url
 
-
+  end
 private
 
   def story_params

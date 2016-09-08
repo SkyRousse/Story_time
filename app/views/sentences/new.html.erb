@@ -1,0 +1,7 @@
+<%= image_tag(@img_link) %>
+<%= form_for [@story, @sentence] do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :image, :value => @img_link %>
+  <%= f.submit %>
+<% end %>

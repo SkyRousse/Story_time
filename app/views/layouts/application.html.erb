@@ -10,10 +10,14 @@
 
   <body>
     <% if session[:current_user_id] %>
+    <nav>
+      <%= link_to "Home", root_url %>
+      <%= link_to "Add Story", new_story_path %>
       <%= link_to "Log Out", login_path(0),
                   :data => {:method => "delete"}%>
+                </nav>
     <% else %>
-      <%= link_to "Log In", new_login_path %>
+      <%= link_to "Create Account", new_user_path %>
     <% end %>
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
