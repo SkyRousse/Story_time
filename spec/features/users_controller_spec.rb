@@ -6,6 +6,6 @@ describe "create a new user process" do
     fill_in 'Name', :with => "Username"
     fill_in 'Password', :with => "abcd1234"
     click_on 'Create User'
-    expect(page).to have_content 'Yay'
+    expect(page).to have_content 'Stories'
   end
 end

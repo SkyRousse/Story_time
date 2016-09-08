@@ -3,11 +3,16 @@ class LoginsController < ApplicationController
   def new
     @user = User.new
   end
+
   def create
-    if user = User.authenticate(params[:name], params[:password])
+    user = User.where(:name => params[:name].downcase).first
+    if user && user.authenticate(params[:password])
       flash[:notice] = "You have been logged in"
       session[:current_user_id] = user.id
       redirect_to root_url
+    else
+      flash[:notice] = "Fail!"
+      render :new
     end
   end
 
